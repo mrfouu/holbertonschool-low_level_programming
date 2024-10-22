@@ -1,3 +1,9 @@
+/**
+ * main - prints the size of various types
+ *
+ * Return: O
+ */
+
 #include <stdlib.h>
 #include <time.h>
 #include <stdio.h>
