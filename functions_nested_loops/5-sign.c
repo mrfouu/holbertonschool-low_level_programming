@@ -1,4 +1,4 @@
-nclude "main.h"
+#include "main.h"
 /**
  * print_sign - prints sign of number
  * @n : character to be verified
