@@ -1,20 +1,17 @@
 #include "main.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 /**
-*free_grid - Entry point
-*@grid: tableau
-*@height: longueur
-*/
+ * free_grid - free up a 2d grid
+ * @grid: double pointer 2d grid
+ * @height: height of grid
+ */
 
 void free_grid(int **grid, int height)
 {
-	int i = 0;
+	int i;
 
-	for (; i <= height; i++)
-	{
-	    free(grid[i]);
-	}
+	for (i = 0; i < height; i++)
+		free(grid[i]);
 	free(grid);
 }
