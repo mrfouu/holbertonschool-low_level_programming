@@ -1,25 +1,31 @@
-#include <stdio.h>
 #include "function_pointers.h"
 #include <stdlib.h>
+
 /**
- * int_index - fonction
- * @cmp: fonction
- * @size: taille du array
- * @array: tableau
- * Return: fait retour as -1 ou 0
+ * int_index - print a name
+ * @array : the array of integer
+ * @size : the size of array
+ * @cmp : the function call
+ *
+ * Return: "n"
  */
+
 int int_index(int *array, int size, int (*cmp)(int))
 {
-	int i;
+	int n;
 
-	for (i = 0; i < size; i++)
-		if (cmp(array[i]))
-			return (i);
-
-	if (array == 0 || size == 0)
+	if (array == 0 || cmp == 0)
 		return (-1);
 
-	else if (size <= 0)
+	if (size <= 0)
 		return (-1);
-	return (0);
+
+	for (n = 0; n < size; n++)
+	{
+		cmp(array[n]);
+		if (cmp(array[n]))
+			return (n);
+	}
+
+	return (-1);
 }

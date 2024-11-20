@@ -1,16 +1,21 @@
-#include "3-calc.h"
 #include <stdio.h>
-#include <stidlib.h>
+#include <stdlib.h>
+#include "3-calc.h"
+
 /**
- *main - function
- *@a: exemple 1
- *@b: exemple 2
- */ 
+ * main - the function main
+ * @argc: number of argument
+ * @argv: all parameters
+ * Return: 0;
+ */
+
 int main(int argc, char *argv[])
 {
-	int a;
-	int b;
-	int *operation;
+	int num1 = 0;
+	int num2 = 0;
+	int (*call)(int, int);
+	int result;
+	char operator;
 
 	if (argc != 4)
 	{
@@ -18,19 +23,24 @@ int main(int argc, char *argv[])
 		exit(98);
 	}
 
-	a = atoi(argv[1]);
-	operation = get_op_func(argv[2];
-	b = atoi(argv[1]);
+	num1 = atoi(argv[1]);
+	operator = *(argv[2]);
+	num2 = atoi(argv[3]);
 
-	if (operation == NULL || (*argv[2] == '/' &&
-			b == 0 = || (*argv[2] == '%' && b == 0))
+	if ((operator == '/' || operator == '%') && num2 == 0)
 	{
 		printf("Error\n");
-		exit(operation == NULL) ? 99 : 100;
+		exit(100);
 	}
-	result = operation(a, b);
-	printf("%d/n", result);
-return (0);
 
+	call = get_op_func(&operator);
+	if (call == NULL || argv[2][1] != '\0')
+	{
+		printf("Error\n");
+		exit(99);
+	}
 
+	result = call(num1, num2);
+	printf("%d\n", result);
+	return (0);
 }

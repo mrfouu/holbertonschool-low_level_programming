@@ -1,12 +1,10 @@
 #include "3-calc.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 /**
- * op_add - additions
- * @a: premier argument
- * @b: deuxieme argument
- * Return: result
+ * op_add - add "a" and "b"
+ * @a : first integer
+ * @b : second integer
+ * Return: the result of the add
  */
 
 int op_add(int a, int b)
@@ -15,44 +13,48 @@ int op_add(int a, int b)
 }
 
 /**
- * op_sub - soustractions
- * @a: premier argument
- * @b: deuxieme argument
- * Return: result
+ * op_sub - sub "a" and "b"
+ * @a : first integer
+ * @b : second integer
+ * Return: the result of the sub
  */
+
 int op_sub(int a, int b)
 {
 	return (a - b);
 }
 
 /**
- * op_mul - multiplications
- * @a: premier argument
- * @b: deuxieme argument
- * Return: result
+ * op_mul - mul "a" and "b"
+ * @a : first integer
+ * @b : second integer
+ * Return: the result of the mul
  */
+
 int op_mul(int a, int b)
 {
 	return (a * b);
 }
 
 /**
- * op_div - divisions
- * @a: premier argument
- * @b: deuxieme argument
- * Return: result
+ * op_div - div "a" and "b"
+ * @a : first integer
+ * @b : second integer
+ * Return: the result of the div
  */
+
 int op_div(int a, int b)
 {
 	return (a / b);
 }
 
 /**
- * op_mod - modulo
- * @a: premier argument
- * @b: deuxieme argument
- * Return: result
+ * op_mod - mod "a" and "b"
+ * @a : first integer
+ * @b : second integer
+ * Return: the result of the mod
  */
+
 int op_mod(int a, int b)
 {
 	return (a % b);
