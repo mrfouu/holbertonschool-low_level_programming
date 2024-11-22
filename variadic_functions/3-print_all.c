@@ -1,94 +1,82 @@
 #include "variadic_functions.h"
-#include <stdarg.h>
-#include <stdio.h>
 
 /**
- * _printchar - print char
- * @va : the list
- *
+ * print_char - Prints a char
+ * @ap: Argument pointer
  */
-
-void _printchar(va_list va)
+void print_char(va_list ap)
 {
-	printf("%c", va_arg(va, int));
+	printf("%c", va_arg(ap, int));
 }
 
 /**
- * _printint - print int
- * @va : the list
- *
+ * print_integer - Prints an integer
+ * @ap: Argument pointer
  */
-
-void _printint(va_list va)
+void print_integer(va_list ap)
 {
-	printf("%d", va_arg(va, int));
-
+	printf("%d", va_arg(ap, int));
 }
 
 /**
- * _printfloat - print float
- * @va : the list
- *
+ * print_float - Prints a float
+ * @ap: Argument pointer
  */
-
-void _printfloat(va_list va)
+void print_float(va_list ap)
 {
-	printf("%f", va_arg(va, double));
+	printf("%f", va_arg(ap, double));
 }
 
 /**
- * _printstr - print char
- * @va : the list
- *
+ * print_string - Prints a string
+ * @ap: Argument pointer
  */
-
-void _printstr(va_list va)
+void print_string(va_list ap)
 {
-	char *s;
+	char *s = va_arg(ap, char *);
 
-	s = va_arg(va, char*);
-	if (s == NULL)
-		s = "(nil)";
-	printf("%s", s);
+	if (!s)
+	{
+		printf("(nil)");
+		return;
+	}
+		printf("%s", s);
 }
 
 /**
- * print_all - print all
- * @format : the list
- *
+ * print_all - Prints anything
+ * @format: Types of arguments passed to function
  */
-
 void print_all(const char * const format, ...)
 {
-	arr check[] = {
-		{"c", _printchar},
-		{"i", _printint},
-		{"f", _printfloat},
-		{"s", _printstr}
+	print_type types[] = {
+		{"c", print_char},
+		{"i", print_integer},
+		{"f", print_float},
+		{"s", print_string},
+		{NULL, NULL}
 	};
+	va_list ap;
+	char *separator = "";
+	int i = 0;
+	int j = 0;
 
-	va_list printall;
-	unsigned int i = 0;
-	unsigned int n = 0;
-	char *sepa;
-
-	va_start(printall, format);
-	sepa = "";
-	while (format != NULL && format[i] != '\0')
+	va_start(ap, format);
+	while (format && format[i])
 	{
-		while (n < 4)
+		while (types[j].type)
 		{
-			if (format[i] == check[n].letter[0])
+			if (*types[j].type == format[i])
 			{
-				printf("%s", sepa);
-				check[n].func(printall);
-				sepa = ", ";
+				printf("%s", separator);
+				types[j].f(ap);
+				separator = ", ";
 			}
-			n++;
+			++j;
 		}
-		n = 0;
-		i++;
+		j = 0;
+		++i;
 	}
 	printf("\n");
-	va_end(printall);
+	va_end(ap);
 }
