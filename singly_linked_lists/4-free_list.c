@@ -1,21 +1,22 @@
 #include "lists.h"
+#include <stdlib.h>
+#include <string.h>
 
 /**
- * free_list - function that free a list
+ * free_list - free the list
+ * @head : the content of element
  *
- * @head: pointer to the head of the list
  */
 
 void free_list(list_t *head)
 {
-	list_t *tmp;
+	list_t *palace;
 
 	while (head)
 	{
-		tmp = head;
-		head = head->next;
-
-		free(tmp->str);
-		free(tmp);
+		palace = head->next;
+		free(head->str);
+		free(head);
+		head = palace;
 	}
 }

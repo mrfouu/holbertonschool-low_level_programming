@@ -1,22 +1,20 @@
 #include "lists.h"
 
 /**
- * list_len - return the number of nodes in the list_t list
+ * list_len - return number of element
+ * @h : the content of element
  *
- * @h: pointer to the mem adress of the list_t list
- *
- * Return: the number of nodes in the list
+ * Return: element
  */
 
 size_t list_len(const list_t *h)
 {
-	size_t node_num = 0;
+	int x = 0;
 
 	while (h)
 	{
-		node_num++;
 		h = h->next;
+		x++;
 	}
-
-	return (node_num);
+	return (x);
 }
